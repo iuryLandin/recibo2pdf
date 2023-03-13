@@ -1,0 +1,118 @@
+<html lang="pt-br">
+
+<head>
+    <title>PROPOSTA</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1" />
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" type="text/javascript"></script>
+    <script src="https://plentz.github.io/jquery-maskmoney/javascripts/jquery.maskMoney.min.js"
+        type="text/javascript"></script>
+    <style>
+        [contenteditable] {
+            outline: 1px dashed #858585;
+            padding-left: 7px;
+            padding-right: 7px;
+        }
+
+        input{
+            border: 1px dashed #858585;
+            outline: none;
+        }
+
+        * {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 12pt;
+        }
+
+        .botao {
+            cursor: pointer;
+            width: auto;
+            background-color: royalblue;
+            font-size: 14px;
+            color: white;
+            padding: 5px 12px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            border-radius: 4px;
+            border: none;
+        }
+
+
+        @media print {
+            .no-print,
+            .no-print * {
+                display: none !important;
+            }
+
+            [contenteditable] {
+                outline: none;
+                border: none;
+            }
+
+            #valor {
+                border: none;
+            }
+        }
+    </style>
+</head>
+
+
+<body>
+
+    <div style="display: flex; flex-direction: row-reverse; padding: 2px;" class="no-print">
+        <button type="button" class="botao" onclick="window.print()">Gerar PDF</button>
+    </div>
+
+
+    <p style="text-align:center"><img alt="" src="https://i.ibb.co/PtCCmnj/limpabem.png" width="150" /></p>
+
+    <p dir="ltr" style="text-align: center;"><strong>PROPOSTA PARA A PRESTA&Ccedil;&Atilde;O DE SERVI&Ccedil;OS</strong>
+    </p>
+
+    <p dir="ltr">
+        <B>CLIENTE:</B>
+        <span style="text-transform: uppercase;" contenteditable="true">NOME DA EMPRESA OU PESSOA</span>
+        <br />
+        <b>ENDEREÇO:</b>
+        <span style="text-transform: uppercase;" contenteditable="true">RUA 05, Nº 123, CEP 123-456, CIDADE-UF</span>
+    </p>
+
+    <hr />
+    <p dir="ltr">Prezado(s),</p>
+
+    <p dir="ltr">Estamos submetendo aprecia&ccedil;&atilde;o de V.S&ordf;. a presente proposta para
+        presta&ccedil;&atilde;o de servi&ccedil;os de limpeza.&nbsp;</p>
+
+    <p dir="ltr">Nosso diferencial est&aacute; na customiza&ccedil;&atilde;o de servi&ccedil;os onde o cliente &eacute;
+        a raz&atilde;o da exist&ecirc;ncia da nossa empresa, portanto, vai de encontro com a nossa filosofia de
+        trabalho, atendimento feito com seriedade e profissionalismo. Confira nossos servi&ccedil;os e pre&ccedil;os,
+        conforme discriminado abaixo:<br />
+        &nbsp;</p>
+
+    <ul contenteditable="true">
+        <li>Serviço 1;</li>
+        <li>Serviço 2;</li>
+        <li>Serviço 3;</li>
+    </ul>
+
+    <p dir="ltr" style="text-align: center;"><u><strong>CONDI&Ccedil;&Otilde;ES GERAIS DE PRESTA&Ccedil;&Atilde;O DOS
+                SERVI&Ccedil;OS</strong></u></p>
+
+    <p dir="ltr">CONDI&Ccedil;&Otilde;ES DE PAGAMENTO: O pagamento ser&aacute; realizado da seguinte forma: <span contenteditable="true">50%</span> do valor
+        para custeio de produtos a serem utilizados na presta&ccedil;&atilde;o de servi&ccedil;o e <span contenteditable="true">50%</span> restante na
+        entrega do trabalho.</p>
+
+    <p dir="ltr"><strong>VALOR TOTAL:</strong> <input type="tel" id="valor" value="R$ 2.600,00"></p>
+
+    <address>&nbsp;</address>
+
+    <script>
+        $("#valor").maskMoney({ prefix: 'R$ ', allowNegative: true, thousands: '.', decimal: ',', affixesStay: true });
+    </script>
+
+</body>
+
+</html>

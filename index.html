@@ -1,195 +1,38 @@
-<!DOCTYPE html>
-<html>
-
+<html lang="pt-br">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
-  <title>Gerador de recibo</title>
+    <title>Gerador de Recibo e Proposta</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1" />
 
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" type="text/javascript"></script>
-  <script src="https://plentz.github.io/jquery-maskmoney/javascripts/jquery.maskMoney.min.js"
-    type="text/javascript"></script>
-
-  <script type="text/javascript" src="js/jspdf.min.js"></script>
-  <script type="text/javascript" src="https://momentjs.com/downloads/moment-with-locales.min.js"></script>
-  <script type="text/javascript"
-    src="https://cdn.jsdelivr.net/npm/gasparesganga-jquery-loading-overlay@2.1.7/dist/loadingoverlay.min.js"></script>
-  <script type="text/javascript">
-
-    // Uma função que é chamada quando o DOM é caregado
-    function chama() {
-      // Iniciando colheita de dados e posterior geracao do pdf
-      document.getElementById('enviar').onclick = pega;
-
-      moment.locale('pt');
-    }
-
-    // Função que pega o valor dos inputs
-    function pega() {
-
-      var nume = document.getElementById('numero').value;
-      var valor = document.getElementById('valor').value;
-      var cliente = document.getElementById('cliente').value;
-      var cnpj = document.getElementById('cnpj').value;
-      var ende = document.getElementById('ende').value;
-      var cep = document.getElementById('cep').value;
-      var fone = document.getElementById('fone').value;
-      var realizado = document.getElementById('realizado').value;
-
-      var pdf = new jsPDF();
-
-      var dataAtual = moment().format('LLLL')
-
-      var html = `   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-      <div class="container">
-          <div class="row">
-            <div class="col-md-12"> <center> <img src="https://i.ibb.co/PtCCmnj/limpabem.png" width="240" /> </center> <br> </div>
-              <div class="col-md-6">
-                  <h3>RECIBO</h3>
-              </div>
-
-              <div class="col-md-6 text-right">
-                  <h3>VALOR: R$ ${valor}</h3>
-              </div>
-          </div>
-
-          <div class="row mt-2">
-            <div class="col-md-12">
-                <p>Recebi(emos) de <b>${cliente}</b>, CPF/CNPJ nº <b>${cnpj}</b>, a importancia de <b>R$ ${valor}</b>. Referente ao serviço de <b>${realizado.toUpperCase()}</b>.</p>
-                <p>E, para maior clareza firmo o presente recibo para que produza os seus efeitos, dando plena, rasa e irrevogável quitação, pelo valor recebido.</p>
-                <br>
-                <p>Palmas - TO, ${dataAtual}</p>
-                <br>
-                <p align="center"> _____________________________________________ <br> <em>LIMPA BEM MULTISERVIÇOS</em> </p>
-            </div>
-          </div>
-      </div>`;
-
-      w = window.open('', 'PrintWindow', '');
-      w.document.write(html);
-      w.focus();
-      w.print();
-
-    }
-  </script>
+    <style>
+        *{
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .botao {
+            width: 200px;
+            background-color: royalblue;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            border-radius: 12px;
+        }
+    </style>
 </head>
 
-<body onload="chama()" style='background-color: #f3f3f3;'>
-  <div class="container">
-    <br>
-    <h2 class="title">Gerador de Recibo</h1>
-      <p>Preencha conforme a sugestao do proprio campo para melhores resultados </p> <br>
-      <div class="row mt-2">
+<body>
 
-        <div class="col-md-4 mt-2">
-          <input id="numero" placeholder="Numero do Recibo" value="" type="hidden" autofocus class="form-control" />
-          <input id="valor" placeholder="Valor" type="tel" class="form-control" />
-        </div>
+    <div class="painel" style="margin-top: 10%;">
+        <center>
+            <h3>Escolha: </h3>
+            <a class="botao" href="proposta.html">Nova Proposta</a> <br><br>
+            <a class="botao" href="recibo.html">Novo Recibo</a>
+        </center>
 
-        <div class="col-md-8 mt-2">
-          <input id="cliente" placeholder="Nome do Cliente" type="text" class="form-control" />
-        </div>
-
-        <div class="col-md-6 mt-2">
-          <input id="cnpj" placeholder="CNPJ do Cliente" type="text" class="form-control" />
-        </div>
-
-        <div class="col-md-3 mt-2">
-          <input id="cep" placeholder="CEP do Cliente" type="tel" onblur="pesquisacep(this.value);"
-            class="form-control" />
-        </div>
-
-        <div class="col-md-5 mt-2">
-          <input id="ende" placeholder="Endereço do Cliente" type="text" class="form-control" />
-        </div>
-
-        <div class="col-md-4 mt-2">
-          <input id="fone" placeholder="Telefone do Cliente" type="text" class="form-control" />
-        </div>
-
-        <div class="col-md-12 mt-2">
-          <textarea id="realizado" placeholder="Serviço Realizado" type="text" class="form-control" rows="5"></textarea>
-        </div>
-
-      </div>
-
-      <div class="row mt-2">
-        <div class="col-md-5">
-          <button class="btn btn-primary btn-block" id="enviar">CRIAR RECIBO</button>
-        </div>
-      </div>
-
-  </div>
-
-  <script>
-    $("#valor").maskMoney({ prefix: 'R$ ', allowNegative: true, thousands: '.', decimal: ',', affixesStay: false });
-  </script>
-
-
-  <!-- Adicionando Javascript -->
-  <script>
-
-    function limpa_formulário_cep() {
-      document.getElementById('ende').value = ("");
-      $.LoadingOverlay("hide");
-    }
-
-    function meu_callback(conteudo) {
-      if (!("erro" in conteudo)) {
-        //Atualiza os campos com os valores.
-        document.getElementById('ende').value = `${conteudo.logradouro}, ${conteudo.bairro}, ${conteudo.localidade} - ${conteudo.uf} `;
-      } //end if.
-      else {
-        //CEP não Encontrado.
-        limpa_formulário_cep();
-        alert("CEP não encontrado.");
-      }
-      $.LoadingOverlay("hide");
-    }
-
-    function pesquisacep(valor) {
-      $.LoadingOverlay("show");
-
-      //Nova variável "cep" somente com dígitos.
-      var cep = valor.replace(/\D/g, '');
-
-      //Verifica se campo cep possui valor informado.
-      if (cep != "") {
-
-        //Expressão regular para validar o CEP.
-        var validacep = /^[0-9]{8}$/;
-
-        //Valida o formato do CEP.
-        if (validacep.test(cep)) {
-
-          //Preenche os campos com "..." enquanto consulta webservice.
-          document.getElementById('ende').value = "...";
-
-          //Cria um elemento javascript.
-          var script = document.createElement('script');
-
-          //Sincroniza com o callback.
-          script.src = 'https://viacep.com.br/ws/' + cep + '/json/?callback=meu_callback';
-
-          //Insere script no documento e carrega o conteúdo.
-          document.body.appendChild(script);
-
-        } //end if.
-        else {
-          //cep é inválido.
-          limpa_formulário_cep();
-          alert("Formato de CEP inválido.");
-        }
-      } //end if.
-      else {
-        //cep sem valor, limpa formulário.
-        limpa_formulário_cep();
-      }
-    };
-
-  </script>
+    </div>
 
 </body>
 
