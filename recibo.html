@@ -12,22 +12,12 @@
   <script src="https://plentz.github.io/jquery-maskmoney/javascripts/jquery.maskMoney.min.js"
     type="text/javascript"></script>
 
-  <script type="text/javascript" src="js/jspdf.min.js"></script>
   <script type="text/javascript" src="https://momentjs.com/downloads/moment-with-locales.min.js"></script>
   <script type="text/javascript"
     src="https://cdn.jsdelivr.net/npm/gasparesganga-jquery-loading-overlay@2.1.7/dist/loadingoverlay.min.js"></script>
   <script type="text/javascript">
 
-    // Uma função que é chamada quando o DOM é caregado
     function chama() {
-      // Iniciando colheita de dados e posterior geracao do pdf
-      document.getElementById('enviar').onclick = pega;
-
-      moment.locale('pt');
-    }
-
-    // Função que pega o valor dos inputs
-    function pega() {
 
       var nume = document.getElementById('numero').value;
       var valor = document.getElementById('valor').value;
@@ -37,8 +27,6 @@
       var cep = document.getElementById('cep').value;
       var fone = document.getElementById('fone').value;
       var realizado = document.getElementById('realizado').value;
-
-      var pdf = new jsPDF();
 
       var dataAtual = moment().format('LLLL')
 
@@ -93,21 +81,9 @@
         </div>
 
         <div class="col-md-6 mt-2">
-          <input id="cnpj" placeholder="CNPJ do Cliente" type="text" class="form-control" />
+          <input id="cnpj" placeholder="CPF ou CNPJ do Cliente" type="text" class="form-control" />
         </div>
 
-        <div class="col-md-3 mt-2">
-          <input id="cep" placeholder="CEP do Cliente" type="tel" onblur="pesquisacep(this.value);"
-            class="form-control" />
-        </div>
-
-        <div class="col-md-5 mt-2">
-          <input id="ende" placeholder="Endereço do Cliente" type="text" class="form-control" />
-        </div>
-
-        <div class="col-md-4 mt-2">
-          <input id="fone" placeholder="Telefone do Cliente" type="text" class="form-control" />
-        </div>
 
         <div class="col-md-12 mt-2">
           <textarea id="realizado" placeholder="Serviço Realizado" type="text" class="form-control" rows="5"></textarea>
